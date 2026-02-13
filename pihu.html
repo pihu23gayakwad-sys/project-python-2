@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+
+<style>
+
+html{
+  scroll-behavior: smooth;
+}
+
+body{
+  font-family: Arial, sans-serif;
+  margin:0;
+  padding:0;
+  color:#333;
+  background: linear-gradient(-45deg,#ffd6e8,#fff6f9,#e6f0ff,#ffeef4);
+  background-size: 400% 400%;
+  animation: gradient 12s ease infinite;
+  overflow-x: hidden;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+nav{
+  text-align:center;
+  padding:15px;
+  position:sticky;
+  top:0;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(6px);
+  z-index:10;
+}
+
+nav a{
+  text-decoration:none;
+  color:#444;
+  margin:0 10px;
+  font-weight:bold;
+}
+
+section{
+  padding:60px 20px;
+  max-width:750px;
+  margin:auto;
+}
+
+h1,h2{
+  text-align:center;
+}
+
+.card{
+  background:white;
+  padding:25px;
+  border-radius:14px;
+  margin-top:25px;
+  box-shadow:0 8px 18px rgba(0,0,0,0.08);
+  line-height:1.7;
+}
+
+/* reveal animation */
+.reveal{
+  opacity:0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active{
+  opacity:1;
+  transform: translateY(0);
+}
+
+/* floating hearts */
+.heart{
+  position: fixed;
+  bottom: -20px;
+  font-size: 18px;
+  animation: floatUp 6s linear infinite;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index:1;
+}
+
+@keyframes floatUp{
+  0%{
+    transform: translateY(0);
+    opacity:0.6;
+  }
+  100%{
+    transform: translateY(-100vh);
+    opacity:0;
+  }
+}
+
+.footer{
+  text-align:center;
+  font-size:12px;
+  padding-bottom:40px;
+  opacity:0.7;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="#mem">Memories</a> |
+  <a href="#love">I love you</a> |
+  <a href="#future">Our future</a>
+</nav>
+
+<!-- HERO -->
+<section>
+  <h1 id="type"></h1>
+  <p style="text-align:center;">
+    I made this little space on the internet… just for you.
+  </p>
+</section>
+
+<!-- MEMORIES -->
+<section id="mem">
+  <h2>Our little memories</h2>
+  <div class="card reveal">
+    <p>• Our long calls that never feel long enough.</p>
+    <p>• The way you make me feel. </p>
+    <p>• Your silly side that only I get to see.</p>
+    <p>• And of course… you destroying me at pool and pretending to be humble.</p>
+  </div>
+</section>
+
+<!-- LOVE -->
+<section id="love">
+  <h2>Why I love you</h2>
+  <div class="card reveal">
+    <p>• You understand me even when I can’t explain myself properly.</p>
+    <p>• You are patient. With me. With my moods. With my overthinking.</p>
+    <p>• You make effort — quietly, genuinely, and consistently.</p>
+    <p>• You make me feel safe… even from miles away.</p>
+  </div>
+</section>
+
+<!-- FUTURE -->
+<section id="future">
+  <h2>For our future</h2>
+  <div class="card reveal">
+    <p>
+      One day this distance will just become a story we tell and laugh about.<br>
+      Until then… I choose you.<br>
+      On normal days. On difficult days. On all the days.
+    </p>
+    <p>
+      I miss you. More than I know how to say.
+    </p>
+  </div>
+</section>
+
+<div class="footer">
+  Made by your girlfriend who misses you every single day.
+</div>
+
+<!-- typing effect -->
+<script>
+const text = " ❤️ Happy Valentine’s Day";
+let i = 0;
+
+function typeEffect(){
+  if(i < text.length){
+    document.getElementById("type").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeEffect,80);
+  }
+}
+typeEffect();
+</script>
+
+<!-- reveal on scroll -->
+<script>
+const reveals = document.querySelectorAll(".reveal");
+
+function revealOnScroll(){
+  for(let i = 0; i < reveals.length; i++){
+    const windowHeight = window.innerHeight;
+    const elementTop = reveals[i].getBoundingClientRect().top;
+    const elementVisible = 100;
+
+    if(elementTop < windowHeight - elementVisible){
+      reveals[i].classList.add("active");
+    }
+  }
+}
+
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll();
+</script>
+
+<!-- floating hearts -->
+<script>
+function createHeart(){
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerText = "💗";
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 7000);
+}
+
+setInterval(createHeart, 900);
+</script>
+
+</body>
+</html>
